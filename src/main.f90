@@ -16,9 +16,20 @@ program main
     real :: time_naive, time_better, time_dot, time_matmul
 
 
+    open (unit = 1, file = "../res/time_naiv_4")
+    open (unit = 2, file = "../res/time_naiv_8")
+    open (unit = 3, file = "../res/time_naiv_16")
+    open (unit = 4, file = "../res/time_better_4")
+    open (unit = 5, file = "../res/time_better_8")
+    open (unit = 7, file = "../res/time_better_16")
+    open (unit = 8, file = "../res/time_dot_4")
+    open (unit = 9, file = "../res/time_dot_8")
+    open (unit = 10, file = "../res/time_dot_16")
+    open (unit = 11, file = "../res/time_matmul_4")
+    open (unit = 12, file = "../res/time_matmul_8")
+    open (unit = 13, file = "../res/time_matmul_16")
 
-    open (unit = 2, file = "../res/results")
-    !write(2,*)"rozmiar:kind:method:time"
+
  
     sizes = [10,20,40,80,160,320,640,1280]
 
@@ -58,17 +69,17 @@ program main
          call cpu_time(time_start)
          C_4=naivmull(A_4,B_4)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":4:naive:",time_stop-time_start
+         write(1,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_8=naivmull(A_8,B_8)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":8:naive:",time_stop-time_start
+         write(2,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_16=naivmull(A_16,B_16)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":16:naive:",time_stop-time_start
+         write(3,*) sizes(i)," ",time_stop-time_start
 
          do x=1,sizes(i)
             do y=1,sizes(i)
@@ -81,17 +92,17 @@ program main
          call cpu_time(time_start)
          C_4=bettmull(A_4,B_4)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":4:better:",time_stop-time_start
+         write(4,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_8=bettmull(A_8,B_8)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":8:better:",time_stop-time_start
+         write(5,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_16=bettmull(A_16,B_16)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":16:better:",time_stop-time_start
+         write(7,*) sizes(i)," ",time_stop-time_start
 
          do x=1,sizes(i)
             do y=1,sizes(i)
@@ -104,17 +115,17 @@ program main
          call cpu_time(time_start)
          C_4=dotmull(A_4,B_4)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":4:dot:",time_stop-time_start
+         write(8,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_8=dotmull(A_8,B_8)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":8:dot:",time_stop-time_start
+         write(9,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_16=dotmull(A_16,B_16)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":16:dot:",time_stop-time_start
+         write(10,*) sizes(i)," ",time_stop-time_start
 
          do x=1,sizes(i)
             do y=1,sizes(i)
@@ -127,17 +138,17 @@ program main
          call cpu_time(time_start)
          C_4=matmul(A_4,B_4)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":4:matmul:",time_stop-time_start
+         write(11,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_8=matmul(A_8,B_8)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":8:matmul:",time_stop-time_start
+         write(12,*) sizes(i)," ",time_stop-time_start
 
          call cpu_time(time_start)
          C_16=matmul(A_16,B_16)
          call cpu_time(time_stop)
-         write(2,*) sizes(i),":16:matmul:",time_stop-time_start
+         write(13,*) sizes(i)," ",time_stop-time_start
 
          do x=1,sizes(i)
             do y=1,sizes(i)
